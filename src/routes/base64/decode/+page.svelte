@@ -2,11 +2,11 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import * as Resizable from '$lib/components/ui/resizable';
 	let x: string = '';
-	$: encodedData = btoa(x);
+	$: decodedData = atob(x);
 	import { ClipboardIcon } from '$lib/icons/clipboard';
 	const copyToClipboard = () => {
 		navigator.clipboard
-			.writeText(encodedData)
+			.writeText(decodedData)
 			.then(() => {
 				console.log('Text successfully copied to clipboard');
 			})
@@ -17,7 +17,7 @@
 </script>
 
 <svelte:head>
-	<title>Encode Base64</title>
+	<title>Decode Base64</title>
 	<meta name="description" content="About this app" />
 </svelte:head>
 
@@ -39,7 +39,7 @@
 		<Resizable.Handle />
 		<Resizable.Pane
 			><textarea
-				bind:value={encodedData}
+				bind:value={decodedData}
 				class="w-full h-full outline-none bg-inherit p-2 overflow-scroll"
 			/></Resizable.Pane
 		>
